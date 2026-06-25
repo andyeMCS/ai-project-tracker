@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#000000" />
-<title>Media City Studios AI Projects tracker</title>
+<title>Media City Studios AI Project tracker</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -130,11 +130,6 @@
   .card.collapsed .card-head { margin-bottom: 12px; }
   .card.collapsed .card-body { display: none; }
   .card:not(.collapsed) .peek { display: none; }
-  .toggle-hint {
-    margin-top: 14px; font-size: 11px; color: var(--text-faint);
-    text-transform: uppercase; letter-spacing: 0.6px;
-  }
-  .card:hover .toggle-hint { color: var(--text-muted); }
   .card:focus-visible { outline: 2px solid var(--lilac); outline-offset: 2px; }
   .card {
     background: var(--paper); border: 1px solid var(--border);
@@ -280,7 +275,7 @@
     </header>
     </div></div>
     <div class="wrap">
-    <h1>Media City Studios AI Projects tracker</h1>
+    <h1>Media City Studios AI Project tracker</h1>
 
     <div class="columns" id="columns"></div>
     <div class="empty" id="empty" hidden>No projects to show.</div>
@@ -399,15 +394,12 @@
             (p.next ? '<p class="notes"><span class="notes-label">Next:</span> ' + esc(p.next) + '</p>' : '') +
           '</div>' : '') +
         '</div>' +
-        '<div class="toggle-hint">Click for details</div>' +
       '</article>';
   }
 
   function toggleCard(card) {
     var collapsed = card.classList.toggle("collapsed");
     card.setAttribute("aria-expanded", collapsed ? "false" : "true");
-    var hint = card.querySelector(".toggle-hint");
-    if (hint) hint.textContent = collapsed ? "Click for details" : "Click to collapse";
   }
 
   function bindCards(scope) {
@@ -427,6 +419,27 @@
         });
       })(cards[i]);
     }
+  }
+
+  function liveDateKey(p) {
+    var parts = String(p.liveDate || "").split("/");
+    if (parts.length === 3) {
+      var d = parseInt(parts[0], 10), mo = parseInt(parts[1], 10), y = parseInt(parts[2], 10);
+      if (y < 100) y += 2000;
+      if (!isNaN(d) && !isNaN(mo) && !isNaN(y)) return (y * 10000) + (mo * 100) + d;
+    }
+    var iso = parseInt(String(p.lastUpdated || "").replace(/-/g, ""), 10);
+    return isNaN(iso) ? 0 : iso;
+  }
+
+  function sortBucket(status, list) {
+    var out = list.slice();
+    if (status === "In Development") {
+      out.sort(function (a, b) { return String(a.name).localeCompare(String(b.name)); });
+    } else {
+      out.sort(function (a, b) { return liveDateKey(b) - liveDateKey(a); });
+    }
+    return out;
   }
 
   function render() {
@@ -453,7 +466,7 @@
     });
 
     statuses.forEach(function (status) {
-      var list = groups[status];
+      var list = sortBucket(status, groups[status]);
       var col = document.createElement("section");
       col.className = "column " + (BADGE[status] || "dev");
       col.innerHTML =
@@ -474,6 +487,7 @@
       '<div class="foot-team">Maintained by the Media City Studios Innovation Team</div>' +
       '<div class="foot-contacts">' +
         '<span>Richard Wormwell · Head of Innovation · <a href="mailto:richard.wormwell@dock10.co.uk">richard.wormwell@dock10.co.uk</a></span>' +
+        '<span>Florian Block · R&amp;D Lead, AI and Immersive · <a href="mailto:florian.block@dock10.co.uk">florian.block@dock10.co.uk</a></span>' +
         '<span>Andy Elliott · Lead Virtual Studios Developer · <a href="mailto:andy.elliott@dock10.co.uk">andy.elliott@dock10.co.uk</a></span>' +
       '</div>' +
       '<div class="foot-count">' + allProjects.length + ' project' + (allProjects.length === 1 ? '' : 's') + ' · Media City Studios internal directory</div>';
