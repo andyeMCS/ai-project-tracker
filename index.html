@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#000000" />
-<title>Media City Studios AI projects &amp; tools</title>
+<title>Media City Studios AI Projects live tracker</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -14,6 +14,7 @@
     --cream: #eaece3;        /* pale sage signup surface */
     --lilac: #c3b3e7;        /* brand accent */
     --lilac-soft: #ede7f7;   /* tint for hovers/labels */
+    --blush: #fbeae6;        /* MediaCity pale-pink top bar */
     --text: #000000;
     --text-muted: #5b5f63;
     --text-faint: #8a8f93;
@@ -77,11 +78,12 @@
 
   /* ---------- Layout ---------- */
   .wrap { max-width: 1180px; margin: 0 auto; padding: 30px 22px 40px; }
+  .topbar { background: var(--blush); }
+  .topbar-inner { padding-top: 16px; padding-bottom: 16px; }
   header.site {
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 14px;
-    padding-bottom: 20px; margin-bottom: 22px;
-    border-bottom: 2px solid var(--lilac);
+    margin: 0; padding: 0;
   }
   .site-brand { color: var(--ink); display: flex; align-items: center; }
   .site-brand .logo-svg { width: 188px; }
@@ -193,8 +195,17 @@
     background: var(--ink); color: rgba(255,255,255,0.8);
     text-align: center; font-size: 12px;
     text-transform: uppercase; letter-spacing: 1px;
-    padding: 26px 20px;
+    padding: 28px 20px;
   }
+  .foot-team { font-weight: 700; letter-spacing: 1px; margin-bottom: 12px; color: #ffffff; }
+  .foot-contacts {
+    display: flex; flex-direction: column; gap: 4px;
+    text-transform: none; letter-spacing: 0.2px; font-size: 12.5px;
+    margin-bottom: 14px; color: rgba(255,255,255,0.85);
+  }
+  .foot-contacts a { color: #ffffff; text-decoration: underline; }
+  .foot-contacts a:hover { color: var(--lilac); }
+  .foot-count { font-size: 11px; color: rgba(255,255,255,0.55); }
 
   @media (max-width: 520px) {
     .wrap { padding: 22px 15px 32px; }
@@ -230,7 +241,8 @@
   </div>
 
   <!-- Main page -->
-  <div class="wrap" id="app" hidden>
+  <div id="app" hidden>
+    <div class="topbar"><div class="wrap topbar-inner">
     <header class="site">
       <span class="site-brand">
         <svg class="logo-svg" viewBox="0 0 202 66" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MediaCity">
@@ -250,12 +262,14 @@
         <span class="page-updated" id="page-updated"></span>
       </div>
     </header>
-    <h1>AI projects &amp; tools</h1>
-    <p class="intro">A live index of all AI projects and tools across Media City Studios.</p>
+    </div></div>
+    <div class="wrap">
+    <h1>Media City Studios AI Projects live tracker</h1>
 
     <div class="filters" id="filters"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>No projects match this filter.</div>
+    </div>
   </div>
   <footer class="site" id="footer" hidden></footer>
 
@@ -398,15 +412,20 @@
           '<summary>Technical description</summary>' +
           '<p class="field-text">' + esc(p.technicalSummary) + '</p>' +
         '</details>' +
-        ((p.notes || p.next) ? '<div class="card-foot">' +
-          (p.notes ? '<p class="notes"><span class="notes-label">Notes:</span> ' + esc(p.notes) + '</p>' : '') +
-          (p.next ? '<p class="notes"><span class="notes-label">Next:</span> ' + esc(p.next) + '</p>' : '') +
-        '</div>' : '');
+        '<div class="card-foot">' +
+          '<p class="notes"><span class="notes-label">Notes:</span> ' + esc(p.notes || "") + '</p>' +
+          '<p class="notes"><span class="notes-label">Next:</span> ' + esc(p.next || "") + '</p>' +
+        '</div>';
       grid.appendChild(card);
     });
 
-    document.getElementById("footer").textContent =
-      allProjects.length + " project" + (allProjects.length === 1 ? "" : "s") + " · Media City Studios internal directory";
+    document.getElementById("footer").innerHTML =
+      '<div class="foot-team">Maintained by the Media City Studios Innovation Team</div>' +
+      '<div class="foot-contacts">' +
+        '<span>Richard Wormwell · Head of Innovation · <a href="mailto:richard.wormwell@dock10.co.uk">richard.wormwell@dock10.co.uk</a></span>' +
+        '<span>Andy Elliott · Lead Developer · <a href="mailto:andy.elliott@dock10.co.uk">andy.elliott@dock10.co.uk</a></span>' +
+      '</div>' +
+      '<div class="foot-count">' + allProjects.length + ' project' + (allProjects.length === 1 ? '' : 's') + ' · Media City Studios internal directory</div>';
   }
 })();
 </script>
