@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#000000" />
-<title>Media City Studios AI Projects live tracker</title>
+<title>Media City Studios AI Projects tracker</title>
 <style>
   :root {
     --bg: #ffffff;
@@ -264,7 +264,7 @@
     </header>
     </div></div>
     <div class="wrap">
-    <h1>Media City Studios AI Projects live tracker</h1>
+    <h1>Media City Studios AI Projects tracker</h1>
 
     <div class="filters" id="filters"></div>
     <div class="grid" id="grid"></div>
@@ -404,7 +404,7 @@
           '<h2 class="card-name">' + esc(p.name) + '</h2>' +
           '<div class="badge-group">' +
             (p.platform ? '<span class="badge platform">' + esc(p.platform) + '</span>' : '') +
-            '<span class="badge ' + cls + '">' + esc(p.status) + '</span>' +
+            '<span class="badge ' + cls + '">' + esc(p.status === "Live" && p.liveDate ? "Live · " + p.liveDate : p.status) + '</span>' +
           '</div>' +
         '</div>' +
         '<p class="field-text">' + esc(p.plainSummary) + '</p>' +
@@ -423,7 +423,7 @@
       '<div class="foot-team">Maintained by the Media City Studios Innovation Team</div>' +
       '<div class="foot-contacts">' +
         '<span>Richard Wormwell · Head of Innovation · <a href="mailto:richard.wormwell@dock10.co.uk">richard.wormwell@dock10.co.uk</a></span>' +
-        '<span>Andy Elliott · Lead Developer · <a href="mailto:andy.elliott@dock10.co.uk">andy.elliott@dock10.co.uk</a></span>' +
+        '<span>Andy Elliott · Lead Virtual Studios Developer · <a href="mailto:andy.elliott@dock10.co.uk">andy.elliott@dock10.co.uk</a></span>' +
       '</div>' +
       '<div class="foot-count">' + allProjects.length + ' project' + (allProjects.length === 1 ? '' : 's') + ' · Media City Studios internal directory</div>';
   }
