@@ -276,7 +276,7 @@
     </div></div>
     <div class="wrap">
     <h1>Media City Studios AI Project tracker</h1>
-    <p class="intro">A live index of the AI projects and tools in use across Media City Studios.</p>
+    <p class="intro">A live index of all AI projects and tools in use across Media City Studios</p>
 
     <div class="columns" id="columns"></div>
     <div class="empty" id="empty" hidden>No projects to show.</div>
@@ -373,7 +373,9 @@
   function cardHtml(p) {
     var cls = BADGE[p.status] || "dev";
     var statusLabel = (p.status === "Live" && p.liveDate) ? "Live · " + p.liveDate : p.status;
-    var hasFoot = p.notes || p.next;
+    var owners = (p.owners && p.owners.length) ? p.owners : (p.owner ? [p.owner] : []);
+    var ownerLabel = owners.length > 1 ? "Owners:" : "Owner:";
+    var hasFoot = owners.length || p.notes || p.next;
     return '<article class="card collapsed" role="button" tabindex="0" aria-expanded="false">' +
         '<div class="card-head">' +
           '<h2 class="card-name">' + esc(p.name) + '</h2>' +
@@ -391,6 +393,7 @@
           '</details>' +
           (hasFoot ?
           '<div class="card-foot">' +
+            (owners.length ? '<p class="notes"><span class="notes-label">' + ownerLabel + '</span> ' + esc(owners.join(", ")) + '</p>' : '') +
             (p.notes ? '<p class="notes"><span class="notes-label">Notes:</span> ' + esc(p.notes) + '</p>' : '') +
             (p.next ? '<p class="notes"><span class="notes-label">Next:</span> ' + esc(p.next) + '</p>' : '') +
           '</div>' : '') +
