@@ -4,25 +4,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="robots" content="noindex, nofollow" />
-<title>Media City Studios AI projects & tools</title>
+<meta name="theme-color" content="#000000" />
+<title>Media City Studios AI projects &amp; tools</title>
 <style>
   :root {
-    --bg: #0f1419;
-    --surface: #1a2027;
-    --surface-2: #222a33;
-    --card: #1e252e;
-    --border: #2c3540;
-    --border-strong: #3a4552;
-    --text: #e8edf2;
-    --text-muted: #9aa7b4;
-    --text-faint: #6b7884;
-    --accent: #2dd4bf;
-    --accent-ink: #0f1419;
+    --bg: #ffffff;
+    --ink: #000000;
+    --paper: #ffffff;
+    --cream: #eaece3;        /* pale sage signup surface */
+    --lilac: #c3b3e7;        /* brand accent */
+    --lilac-soft: #ede7f7;   /* tint for hovers/labels */
+    --text: #000000;
+    --text-muted: #5b5f63;
+    --text-faint: #8a8f93;
+    --border: #e2e2dd;
+    --border-strong: #000000;
     --radius: 12px;
-    --radius-sm: 8px;
-    --live-bg: #14352a;       --live-fg: #4ade80;   --live-bd: #1f5a44;
-    --dev-bg: #3a2e12;        --dev-fg: #fbbf24;    --dev-bd: #5e4a1a;
-    --done-bg: #16304d;       --done-fg: #60a5fa;   --done-bd: #244a73;
+    --radius-sm: 10px;
     font-synthesis: none;
   }
   * { box-sizing: border-box; }
@@ -30,116 +28,151 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
+  /* ---------- MediaCity wordmark ---------- */
+  .logo-svg { display: block; height: auto; }
+  .logo-svg path { fill: currentColor; }
+
   /* ---------- Passphrase gate ---------- */
   #gate {
     position: fixed; inset: 0; z-index: 1000;
-    background: var(--bg);
+    background: var(--ink);
+    color: #ffffff;
     display: flex; align-items: center; justify-content: center;
     padding: 24px;
   }
   #gate.hidden { display: none; }
   .gate-panel {
-    width: 100%; max-width: 380px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 32px 28px;
+    width: 100%; max-width: 400px;
     text-align: center;
   }
-  .gate-logo {
-    font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
-    margin: 0 0 4px;
+  .gate-logo { color: #ffffff; margin: 0 auto 18px; }
+  .gate-logo .logo-svg { width: 230px; margin: 0 auto; }
+  .gate-sub {
+    color: rgba(255,255,255,0.65); font-size: 12px; margin: 0 0 26px;
+    text-transform: uppercase; letter-spacing: 1.5px;
   }
-  .gate-logo span { color: var(--accent); }
-  .gate-sub { color: var(--text-muted); font-size: 14px; margin: 0 0 24px; }
   #gate input {
-    width: 100%; padding: 12px 14px; font-size: 15px;
-    background: var(--surface-2); color: var(--text);
-    border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+    width: 100%; padding: 13px 14px; font-size: 15px;
+    background: transparent; color: #ffffff;
+    border: 1px solid rgba(255,255,255,0.4); border-radius: var(--radius-sm);
     outline: none; margin-bottom: 12px;
   }
-  #gate input:focus { border-color: var(--accent); }
+  #gate input::placeholder { color: rgba(255,255,255,0.5); }
+  #gate input:focus { border-color: var(--lilac); }
   #gate button {
-    width: 100%; padding: 12px 14px; font-size: 15px; font-weight: 600;
-    background: var(--accent); color: var(--accent-ink);
-    border: none; border-radius: var(--radius-sm); cursor: pointer;
+    width: 100%; padding: 13px 14px; font-size: 13px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    background: #ffffff; color: var(--ink);
+    border: 1px solid #ffffff; border-radius: var(--radius-sm); cursor: pointer;
   }
-  #gate button:hover { filter: brightness(1.05); }
+  #gate button:hover { background: var(--lilac); border-color: var(--lilac); }
   .gate-error {
-    color: #f87171; font-size: 13px; min-height: 18px; margin: 10px 0 0;
+    color: #ffb4a3; font-size: 13px; min-height: 18px; margin: 12px 0 0;
   }
 
   /* ---------- Layout ---------- */
-  .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 30px 22px 40px; }
   header.site {
-    display: flex; align-items: baseline; justify-content: space-between;
-    flex-wrap: wrap; gap: 8px; margin-bottom: 4px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px;
+    padding-bottom: 20px; margin-bottom: 22px;
+    border-bottom: 1px solid var(--ink);
   }
-  h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin: 0; }
-  h1 span { color: var(--accent); }
-  .lock-tag { font-size: 13px; color: var(--text-faint); }
-  .intro { color: var(--text-muted); font-size: 15px; margin: 6px 0 22px; max-width: 720px; }
+  .site-brand { color: var(--ink); display: flex; align-items: center; }
+  .site-brand .logo-svg { width: 188px; }
+  .lock-tag {
+    font-size: 11px; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1.2px;
+  }
+  h1 {
+    font-size: 26px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.4px;
+  }
+  .intro {
+    color: var(--text-muted); font-size: 16px; margin: 0 0 26px; max-width: 760px;
+  }
 
   /* ---------- Filter bar ---------- */
-  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
   .filter-btn {
-    font-size: 14px; padding: 7px 16px; cursor: pointer;
-    background: var(--surface); color: var(--text-muted);
-    border: 1px solid var(--border); border-radius: 999px;
+    font-size: 12px; padding: 9px 18px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink); border-radius: 999px;
+    transition: background .12s ease, color .12s ease;
   }
-  .filter-btn:hover { border-color: var(--border-strong); color: var(--text); }
+  .filter-btn:hover { background: var(--lilac-soft); }
   .filter-btn.active {
-    background: var(--accent); color: var(--accent-ink);
-    border-color: var(--accent); font-weight: 600;
+    background: var(--ink); color: #ffffff; border-color: var(--ink);
   }
-  .filter-btn .count { opacity: 0.7; margin-left: 4px; font-size: 12px; }
+  .filter-btn .count { opacity: 0.65; margin-left: 5px; font-size: 11px; }
+  .filter-btn.active .count { opacity: 0.8; }
 
   /* ---------- Cards ---------- */
   .grid {
-    display: grid; gap: 16px;
+    display: grid; gap: 18px;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
   }
   .card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 20px 22px;
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px 24px;
     display: flex; flex-direction: column;
+    transition: border-color .12s ease, box-shadow .12s ease;
   }
+  .card:hover { border-color: var(--ink); box-shadow: 0 6px 22px rgba(0,0,0,0.06); }
   .card-head {
     display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 12px; margin-bottom: 14px;
+    gap: 12px; margin-bottom: 16px;
   }
-  .card-name { font-size: 17px; font-weight: 600; margin: 0; }
+  .card-name { font-size: 18px; font-weight: 700; margin: 0; letter-spacing: -0.2px; }
   .badge {
-    font-size: 12px; font-weight: 600; white-space: nowrap;
-    padding: 4px 11px; border-radius: 999px; border: 1px solid transparent;
+    font-size: 11px; font-weight: 700; white-space: nowrap;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    padding: 5px 12px; border-radius: 999px; border: 1px solid transparent;
   }
-  .badge.live { background: var(--live-bg); color: var(--live-fg); border-color: var(--live-bd); }
-  .badge.dev  { background: var(--dev-bg);  color: var(--dev-fg);  border-color: var(--dev-bd); }
-  .badge.done { background: var(--done-bg); color: var(--done-fg); border-color: var(--done-bd); }
+  /* Brand monochrome status badges */
+  .badge.live { background: var(--ink);   color: #ffffff;   border-color: var(--ink); }
+  .badge.dev  { background: var(--lilac);  color: var(--ink); border-color: var(--lilac); }
+  .badge.done { background: var(--cream);  color: var(--ink); border-color: #d4d6cc; }
   .field-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
     color: var(--text-faint); margin: 0 0 3px;
   }
-  .field-text { font-size: 14.5px; color: var(--text); margin: 0 0 14px; }
+  .field-text { font-size: 14.5px; color: var(--ink); margin: 0 0 16px; }
   .card-foot {
-    margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border);
+    margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap;
   }
   .notes { font-size: 13.5px; color: var(--text-muted); margin: 0; flex: 1; min-width: 200px; }
-  .notes-label { color: var(--text-faint); font-weight: 600; }
-  .updated { font-size: 12px; color: var(--text-faint); white-space: nowrap; }
+  .notes-label {
+    color: var(--text-faint); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px; font-size: 11px;
+  }
+  .updated {
+    font-size: 11px; color: var(--text-faint); white-space: nowrap;
+    text-transform: uppercase; letter-spacing: 0.6px;
+  }
 
-  .empty { color: var(--text-muted); padding: 40px 0; text-align: center; }
-  footer.site { margin-top: 40px; color: var(--text-faint); font-size: 12px; text-align: center; }
+  .empty { color: var(--text-muted); padding: 48px 0; text-align: center; }
+
+  /* ---------- Footer (brand black block) ---------- */
+  footer.site {
+    margin-top: 48px;
+    background: var(--ink); color: rgba(255,255,255,0.8);
+    text-align: center; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1px;
+    padding: 26px 20px;
+  }
 
   @media (max-width: 520px) {
-    .wrap { padding: 20px 14px 48px; }
-    h1 { font-size: 21px; }
+    .wrap { padding: 22px 15px 32px; }
+    .site-brand .logo-svg { width: 150px; }
+    h1 { font-size: 22px; }
+    .intro { font-size: 15px; }
   }
 </style>
 </head>
@@ -148,8 +181,20 @@
   <!-- Passphrase gate -->
   <div id="gate">
     <form class="gate-panel" id="gate-form" autocomplete="off">
-      <p class="gate-logo">Media City <span>Studios</span></p>
-      <p class="gate-sub">AI projects & tools directory</p>
+      <div class="gate-logo">
+        <svg class="logo-svg" viewBox="0 0 202 66" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MediaCity">
+          <path d="M65.073 18.7245H90.397V11.8597H65.073V9.59602C65.073 8.34116 66.0963 7.33234 67.3416 7.33234H91.7532V0H55.7152V31.1502H91.8395V23.6825H67.3416C66.084 23.6825 65.073 22.6737 65.073 21.4188V18.7368V18.7245Z"/>
+          <path d="M172.965 19.0567C172.176 19.0567 171.67 18.2324 172.028 17.5435L176.861 8.0828C177.12 7.56609 177.65 7.24623 178.217 7.24623C178.784 7.24623 179.314 7.56609 179.573 8.0828L185.183 19.069H172.953L172.965 19.0567ZM185.664 0H170.881L154.36 31.1502H165.222L166.985 27.6562C167.54 26.5613 168.662 25.8723 169.895 25.8723H188.524L191.187 31.1502H202L185.664 0Z"/>
+          <path d="M27.8761 17.199C27.3336 18.3801 25.6445 18.3801 25.102 17.199L17.2238 0H0V31.1502H9.35779L9.13586 8.89477C9.13586 8.31655 9.59204 7.84905 10.1715 7.84905C10.751 7.84905 10.9236 8.0705 11.0962 8.41497L22.5499 31.1502H30.4652L41.9436 8.39037C42.1039 8.0582 42.4491 7.84905 42.819 7.84905C43.3614 7.84905 43.8053 8.29195 43.793 8.83326L43.571 31.1502H52.9288V0H35.8037L27.8761 17.199Z"/>
+          <path d="M152.092 0H142.13V31.1502H152.092V0Z"/>
+          <path d="M130.084 18.3678C130.084 21.2589 127.705 23.6087 124.771 23.6087H105.858C104.464 23.6087 103.343 22.5014 103.343 21.1235V10.1127C103.343 8.74714 104.464 7.6276 105.858 7.6276H124.771C127.705 7.6276 130.084 9.9774 130.084 12.8685V18.3555V18.3678ZM95.5012 31.1502H127.384C133.993 31.1502 139.344 25.8723 139.344 19.3643V11.9458C139.344 5.43774 133.993 0.159936 127.384 0.159936H127.273C125.609 0.0246074 123.303 0 118.458 0H94.5642V31.1502H95.5012Z"/>
+          <path d="M85.5023 33.9797V41.9148H96.9067C98.2876 41.9148 99.3972 43.0344 99.3972 44.4V65.1175H109.359V44.4C109.359 43.0221 110.481 41.9148 111.85 41.9148H123.254V33.9797H85.49H85.5023Z"/>
+          <path d="M60.9181 53.996V54.5619C60.9181 56.2227 59.5742 57.5637 57.9098 57.5637H42.1162C39.1942 57.5637 36.827 55.2016 36.827 52.2982V46.7743C36.827 43.8586 39.1942 41.5088 42.1162 41.5088H57.9098C59.4509 41.5088 60.7208 42.6653 60.8934 44.1662H70.0293C69.2279 38.3963 64.2593 33.955 58.255 33.955H39.4778C32.9064 33.955 27.5925 39.2698 27.5925 45.8147V53.2824C27.5925 59.8274 32.9187 65.1421 39.4778 65.1421H58.255C64.5798 65.1421 69.7457 60.2211 70.1156 54.0083H60.9058L60.9181 53.996Z"/>
+          <path d="M124.894 33.9797L141.735 52.9503C142.401 53.7007 142.771 54.6603 142.771 55.6691V65.1421H152.597V55.6199C152.597 54.648 152.943 53.713 153.571 52.9749L169.685 33.992H157.282L148.714 44.9659C148.122 45.7286 146.963 45.7409 146.346 44.9905L137.395 33.992H124.906L124.894 33.9797Z"/>
+          <path d="M82.7036 33.9797H72.7417V65.1298H82.7036V33.9797Z"/>
+        </svg>
+      </div>
+      <p class="gate-sub">AI projects &amp; tools directory</p>
       <input type="password" id="gate-input" placeholder="Enter passphrase" aria-label="Passphrase" autofocus />
       <button type="submit">Enter</button>
       <p class="gate-error" id="gate-error" role="alert"></p>
@@ -159,17 +204,29 @@
   <!-- Main page -->
   <div class="wrap" id="app" hidden>
     <header class="site">
-      <h1>Media City <span>Studios</span> AI projects &amp; tools</h1>
+      <span class="site-brand">
+        <svg class="logo-svg" viewBox="0 0 202 66" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MediaCity">
+          <path d="M65.073 18.7245H90.397V11.8597H65.073V9.59602C65.073 8.34116 66.0963 7.33234 67.3416 7.33234H91.7532V0H55.7152V31.1502H91.8395V23.6825H67.3416C66.084 23.6825 65.073 22.6737 65.073 21.4188V18.7368V18.7245Z"/>
+          <path d="M172.965 19.0567C172.176 19.0567 171.67 18.2324 172.028 17.5435L176.861 8.0828C177.12 7.56609 177.65 7.24623 178.217 7.24623C178.784 7.24623 179.314 7.56609 179.573 8.0828L185.183 19.069H172.953L172.965 19.0567ZM185.664 0H170.881L154.36 31.1502H165.222L166.985 27.6562C167.54 26.5613 168.662 25.8723 169.895 25.8723H188.524L191.187 31.1502H202L185.664 0Z"/>
+          <path d="M27.8761 17.199C27.3336 18.3801 25.6445 18.3801 25.102 17.199L17.2238 0H0V31.1502H9.35779L9.13586 8.89477C9.13586 8.31655 9.59204 7.84905 10.1715 7.84905C10.751 7.84905 10.9236 8.0705 11.0962 8.41497L22.5499 31.1502H30.4652L41.9436 8.39037C42.1039 8.0582 42.4491 7.84905 42.819 7.84905C43.3614 7.84905 43.8053 8.29195 43.793 8.83326L43.571 31.1502H52.9288V0H35.8037L27.8761 17.199Z"/>
+          <path d="M152.092 0H142.13V31.1502H152.092V0Z"/>
+          <path d="M130.084 18.3678C130.084 21.2589 127.705 23.6087 124.771 23.6087H105.858C104.464 23.6087 103.343 22.5014 103.343 21.1235V10.1127C103.343 8.74714 104.464 7.6276 105.858 7.6276H124.771C127.705 7.6276 130.084 9.9774 130.084 12.8685V18.3555V18.3678ZM95.5012 31.1502H127.384C133.993 31.1502 139.344 25.8723 139.344 19.3643V11.9458C139.344 5.43774 133.993 0.159936 127.384 0.159936H127.273C125.609 0.0246074 123.303 0 118.458 0H94.5642V31.1502H95.5012Z"/>
+          <path d="M85.5023 33.9797V41.9148H96.9067C98.2876 41.9148 99.3972 43.0344 99.3972 44.4V65.1175H109.359V44.4C109.359 43.0221 110.481 41.9148 111.85 41.9148H123.254V33.9797H85.49H85.5023Z"/>
+          <path d="M60.9181 53.996V54.5619C60.9181 56.2227 59.5742 57.5637 57.9098 57.5637H42.1162C39.1942 57.5637 36.827 55.2016 36.827 52.2982V46.7743C36.827 43.8586 39.1942 41.5088 42.1162 41.5088H57.9098C59.4509 41.5088 60.7208 42.6653 60.8934 44.1662H70.0293C69.2279 38.3963 64.2593 33.955 58.255 33.955H39.4778C32.9064 33.955 27.5925 39.2698 27.5925 45.8147V53.2824C27.5925 59.8274 32.9187 65.1421 39.4778 65.1421H58.255C64.5798 65.1421 69.7457 60.2211 70.1156 54.0083H60.9058L60.9181 53.996Z"/>
+          <path d="M124.894 33.9797L141.735 52.9503C142.401 53.7007 142.771 54.6603 142.771 55.6691V65.1421H152.597V55.6199C152.597 54.648 152.943 53.713 153.571 52.9749L169.685 33.992H157.282L148.714 44.9659C148.122 45.7286 146.963 45.7409 146.346 44.9905L137.395 33.992H124.906L124.894 33.9797Z"/>
+          <path d="M82.7036 33.9797H72.7417V65.1298H82.7036V33.9797Z"/>
+        </svg>
+      </span>
       <span class="lock-tag">Internal directory</span>
     </header>
+    <h1>AI projects &amp; tools</h1>
     <p class="intro">A live index of the AI projects and tools in use across Media City Studios. Filter by status to see what's in progress, live, or complete.</p>
 
     <div class="filters" id="filters"></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>No projects match this filter.</div>
-
-    <footer class="site" id="footer"></footer>
   </div>
+  <footer class="site" id="footer" hidden></footer>
 
 <script>
 (function () {
@@ -180,10 +237,12 @@
   var STORE_KEY = "mediacity_projects_unlocked";
   var gate = document.getElementById("gate");
   var app = document.getElementById("app");
+  var footerEl = document.getElementById("footer");
 
   function unlock() {
     gate.classList.add("hidden");
     app.hidden = false;
+    footerEl.hidden = false;
     loadProjects();
   }
 
