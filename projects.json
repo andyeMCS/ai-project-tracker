@@ -45,5 +45,17 @@
     "notes": "",
     "next": "",
     "lastUpdated": "2026-06-25"
+  },
+  {
+    "name": "World Cup value notebook",
+    "status": "Live",
+    "liveDate": "11/6/26",
+    "platform": "Claude",
+    "owners": ["Tom Daley"],
+    "plainSummary": "A locally hosted web page that lets a broadcast operator quickly record and recall values of any kind — for example the position of a background element — during World Cup broadcasts. It gives operators a single reliable place to store settings and look them up again instantly, so the right values can be reproduced on air without relying on memory or scattered notes.",
+    "technicalSummary": "TBC",
+    "notes": "",
+    "next": "",
+    "lastUpdated": "2026-06-25"
   }
 ]
