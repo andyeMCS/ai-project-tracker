@@ -290,8 +290,10 @@
 (function () {
   "use strict";
 
-  /* ---- Passphrase gate (soft gate; source is public by design) ---- */
-  var PASSPHRASE = "mediacity";
+  /* ---- Passphrase gate (soft gate; source is public by design) ----
+     Passphrase policy: min 16 chars, upper + lower + number/symbol.
+     Set: 26 Jun 2026.  Rotate by: 26 Jun 2027 (bump the year). */
+  var PASSPHRASE = "MediaCityStudios2026!";
   var STORE_KEY = "mediacity_projects_unlocked";
   var gate = document.getElementById("gate");
   var app = document.getElementById("app");
@@ -449,11 +451,9 @@
 
   function sortBucket(status, list) {
     var out = list.slice();
-    if (status === "In Development") {
-      out.sort(function (a, b) { return String(a.name).localeCompare(String(b.name)); });
-    } else {
-      out.sort(function (a, b) { return liveDateKey(b) - liveDateKey(a); });
-    }
+    // Live sorts by liveDate (newest first); In Development falls back to
+    // lastUpdated via liveDateKey(). Both columns: most recent at the top.
+    out.sort(function (a, b) { return liveDateKey(b) - liveDateKey(a); });
     return out;
   }
 
