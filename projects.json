@@ -57,5 +57,16 @@
     "notes": "",
     "next": "",
     "lastUpdated": "2026-06-25"
+  },
+  {
+    "name": "Elevate",
+    "status": "In Development",
+    "platform": "Claude",
+    "owners": ["Andy Elliott", "Richard Wormwell"],
+    "plainSummary": "Elevate is an original lift-themed quiz game made for YouTube. Two contestants play as a team, riding a virtual lift from the Basement up towards the Penthouse (floor 25) across six questions. The signature twist: the four answers are revealed first, then the team bets a difficulty (easy, medium or hard). That single choice sets both how hard the question is and how many floors are at stake, so a bolder bet climbs faster but risks a bigger fall. The higher the floor, the more cash banked, building to a \"Double or Drop\" finale at the top. AI is being used to take the game from a rough single-file demo to a production-ready build for studio recording. It matters as a new studio format and as a working example of AI-assisted development of broadcast production tooling.",
+    "technicalSummary": "A browser-based show-control application that runs locally during recording, with no live network dependency. An operator control screen drives a clean 1080p on-air graphics feed (animated lift shaft, floor and cash readouts, question and timers). It is being rebuilt as a small modern front end (TypeScript + Vite) with a strict separation between a unit-tested game engine, a spreadsheet-driven question data layer with validation, and the presentation layer. Developed with AI assistance.",
+    "notes": "Questions are authored and maintained in a spreadsheet.",
+    "next": "Complete the production rebuild (game engine, operator screen, on-air graphics), playtest full games against the real question set, then studio recording.",
+    "lastUpdated": "2026-07-22"
   }
 ]
