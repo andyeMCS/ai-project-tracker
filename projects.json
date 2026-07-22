@@ -23,18 +23,6 @@
     "lastUpdated": "2026-06-25"
   },
   {
-    "name": "AI project tracker",
-    "status": "Live",
-    "liveDate": "25/6/26",
-    "platform": "Claude",
-    "owners": ["Andy Elliott"],
-    "plainSummary": "The internal directory you're reading right now, a single web page listing the AI projects and tools in use across Media City Studios, with a plain-English and a technical summary for each. It helps staff, freelancers and visitors quickly see what's being built, what's live, and what's finished.",
-    "technicalSummary": "A single self-contained index.html (all CSS and JS inline, no external dependencies) hosted on GitHub Pages, which renders project data from a separate projects.json file so entries can be added or updated without editing the page itself. Access is gated by a shared passphrase remembered in the browser's localStorage, and the responsive layout adapts from phones to large wall displays.",
-    "notes": "",
-    "next": "testing and feedback",
-    "lastUpdated": "2026-06-25"
-  },
-  {
     "name": "Captury to Freed (C2F)",
     "status": "Live",
     "liveDate": "24/4/26",
@@ -67,6 +55,18 @@
     "technicalSummary": "A browser-based show-control application that runs locally during recording, with no live network dependency. An operator control screen drives a clean 1080p on-air graphics feed (animated lift shaft, floor and cash readouts, question and timers). It is being rebuilt as a small modern front end (TypeScript + Vite) with a strict separation between a unit-tested game engine, a spreadsheet-driven question data layer with validation, and the presentation layer. Developed with AI assistance.",
     "notes": "Questions are authored and maintained in a spreadsheet.",
     "next": "Complete the production rebuild (game engine, operator screen, on-air graphics), playtest full games against the real question set, then studio recording.",
+    "lastUpdated": "2026-07-22"
+  },
+  {
+    "name": "dock10 HDR Image Inspector",
+    "status": "Live",
+    "liveDate": "10/6/26",
+    "platform": "Claude",
+    "owners": ["Andy Elliott"],
+    "plainSummary": "A browser-based tool that checks whether an image file is genuinely HDR or just claims to be. You drop a file in and it tells you straight away: true HDR with real extra brightness, an HDR-format file with no actual headroom, PQ/HLG only, or plain SDR. This matters because a lot of files carry HDR-sounding metadata or file extensions without any real HDR content, which causes confusion when checking source material or client deliverables. Runs entirely in the browser, no files leave the machine.",
+    "technicalSummary": "Reads raw file bytes and detects format from magic numbers (JPEG, PNG, GIF, WebP, AVIF, HEIC, TGA). Scans the byte stream for known gain-map markers (Adobe/ISO hdrgm, Google GContainer, Apple HDRGainMap, MPF, ISO 21496-1 URN) and extracts HDRCapacityMax from embedded XMP via regex. Verdict logic: gain map plus valid capacity value gives \"True HDR\" with computed stops/brightness multiplier; gain map with no valid capacity gives \"HDR wrapper\"; strong PQ/HLG transfer markers alone give \"PQ/HLG\"; otherwise \"SDR\". No AI/ML inference involved, built with Claude as a coding assistant. No network calls, all processing is local.",
+    "notes": "",
+    "next": "",
     "lastUpdated": "2026-07-22"
   }
 ]
