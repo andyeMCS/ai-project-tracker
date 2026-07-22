@@ -164,6 +164,7 @@
     display: flex; flex-direction: column; gap: 5px;
   }
   .notes { font-size: 13.5px; color: var(--text-muted); margin: 0; flex: 1; min-width: 200px; }
+  .notes.card-link { margin: 0 0 14px; }
   .notes a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
   .notes a:hover { color: #4b3b73; }
   .notes-label {
@@ -388,7 +389,7 @@
     var statusLabel = (p.status === "Live" && p.liveDate) ? "Live · " + p.liveDate : p.status;
     var owners = (p.owners && p.owners.length) ? p.owners : (p.owner ? [p.owner] : []);
     var ownerLabel = owners.length > 1 ? "Owners:" : "Owner:";
-    var hasFoot = owners.length || p.url || p.notes || p.next;
+    var hasFoot = owners.length || p.notes || p.next;
     return '<article class="card collapsed" role="button" tabindex="0" aria-expanded="false">' +
         '<div class="card-head">' +
           '<h2 class="card-name">' + esc(p.name) + '</h2>' +
@@ -399,6 +400,7 @@
         '</div>' +
         '<p class="peek">' + esc(p.plainSummary) + '</p>' +
         '<div class="card-body">' +
+          (p.url ? '<p class="notes card-link"><span class="notes-label">Link:</span> <a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.url) + '</a></p>' : '') +
           '<p class="field-text">' + esc(p.plainSummary) + '</p>' +
           '<details class="tech">' +
             '<summary>Technical description</summary>' +
@@ -407,7 +409,6 @@
           (hasFoot ?
           '<div class="card-foot">' +
             (owners.length ? '<p class="notes"><span class="notes-label">' + ownerLabel + '</span> ' + owners.map(ownerLink).join(", ") + '</p>' : '') +
-            (p.url ? '<p class="notes"><span class="notes-label">Link:</span> <a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.url) + '</a></p>' : '') +
             (p.notes ? '<p class="notes"><span class="notes-label">Notes:</span> ' + esc(p.notes) + '</p>' : '') +
             (p.next ? '<p class="notes"><span class="notes-label">Next:</span> ' + esc(p.next) + '</p>' : '') +
           '</div>' : '') +
