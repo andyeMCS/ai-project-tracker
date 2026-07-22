@@ -388,7 +388,7 @@
     var statusLabel = (p.status === "Live" && p.liveDate) ? "Live · " + p.liveDate : p.status;
     var owners = (p.owners && p.owners.length) ? p.owners : (p.owner ? [p.owner] : []);
     var ownerLabel = owners.length > 1 ? "Owners:" : "Owner:";
-    var hasFoot = owners.length || p.notes || p.next;
+    var hasFoot = owners.length || p.url || p.notes || p.next;
     return '<article class="card collapsed" role="button" tabindex="0" aria-expanded="false">' +
         '<div class="card-head">' +
           '<h2 class="card-name">' + esc(p.name) + '</h2>' +
@@ -407,6 +407,7 @@
           (hasFoot ?
           '<div class="card-foot">' +
             (owners.length ? '<p class="notes"><span class="notes-label">' + ownerLabel + '</span> ' + owners.map(ownerLink).join(", ") + '</p>' : '') +
+            (p.url ? '<p class="notes"><span class="notes-label">Link:</span> <a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.url) + '</a></p>' : '') +
             (p.notes ? '<p class="notes"><span class="notes-label">Notes:</span> ' + esc(p.notes) + '</p>' : '') +
             (p.next ? '<p class="notes"><span class="notes-label">Next:</span> ' + esc(p.next) + '</p>' : '') +
           '</div>' : '') +

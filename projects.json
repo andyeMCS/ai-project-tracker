@@ -63,6 +63,7 @@
     "liveDate": "10/6/26",
     "platform": "Claude",
     "owners": ["Andy Elliott"],
+    "url": "https://andyemcs.github.io/hdr-image-inspector/",
     "plainSummary": "A browser-based tool that checks whether an image file is genuinely HDR or just claims to be. You drop a file in and it tells you straight away: true HDR with real extra brightness, an HDR-format file with no actual headroom, PQ/HLG only, or plain SDR. This matters because a lot of files carry HDR-sounding metadata or file extensions without any real HDR content, which causes confusion when checking source material or client deliverables. Runs entirely in the browser, no files leave the machine.",
     "technicalSummary": "Reads raw file bytes and detects format from magic numbers (JPEG, PNG, GIF, WebP, AVIF, HEIC, TGA). Scans the byte stream for known gain-map markers (Adobe/ISO hdrgm, Google GContainer, Apple HDRGainMap, MPF, ISO 21496-1 URN) and extracts HDRCapacityMax from embedded XMP via regex. Verdict logic: gain map plus valid capacity value gives \"True HDR\" with computed stops/brightness multiplier; gain map with no valid capacity gives \"HDR wrapper\"; strong PQ/HLG transfer markers alone give \"PQ/HLG\"; otherwise \"SDR\". No AI/ML inference involved, built with Claude as a coding assistant. No network calls, all processing is local.",
     "notes": "",
